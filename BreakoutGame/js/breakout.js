@@ -12,31 +12,30 @@ var dx = 2;
 var dy = -2;
 
 function drawBall() {
-	ctx.beginPath();
-	ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-	ctx.fillStyle = "#0095DD";
-	ctx.fill();
-	ctx.closePath():
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
 }
-	
+
 function draw() {
 	//Clear the canvas
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
 	//Draw the ball
-	drawBall();
-	
+    drawBall();
+    
 	//Bounce off the walls
-	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-		dx = -dx;
-	}
-	
-	if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-		dy = -dy;
-	}
-	
-	x += dx;
-	y += dy;
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+    }
+    
+    x += dx;
+    y += dy;
 }
 
 setInterval(draw, 10);
