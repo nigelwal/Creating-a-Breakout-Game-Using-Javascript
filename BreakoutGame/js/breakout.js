@@ -13,7 +13,7 @@ var dx = 2;
 var dy = -2;
 
 //Setup some bricks
-var brickRowCount = 3;
+var brickRowCount = 5;
 var brickColumnCount = 5;
 var brickWidth = 75;
 var brickHeight = 20;
