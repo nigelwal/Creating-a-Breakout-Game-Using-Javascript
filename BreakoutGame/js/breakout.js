@@ -5,7 +5,7 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 //Setup other variables for the ball size and position
-var ballColour = "#0095DD"
+var ballColour = "#0095DD";
 var ballRadius = 10;
 var x = canvas.width/2;
 var y = canvas.height-30;
@@ -111,16 +111,17 @@ function draw() {
 	//Draw the bricks
 	drawBricks();
     
-//Bounce the ball off three walls - if it drops off the bottom - Game Over!
-if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-	dx = -dx;
-}
-if(y + dy < ballRadius) {
-	dy = -dy;
-} else if (y + dy > canvas.height-ballRadius) {
+	//Bounce the ball off three walls - if it drops off the bottom - Game Over!
+	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+		dx = -dx;
+	}
+	if(y + dy < ballRadius) {
+		dy = -dy;
+	} else if (y + dy > canvas.height-ballRadius) {
 	//Check if the ball is hitting the Paddle
 	if(x > paddleX && x < paddleX + paddleWidth) {
 		dy = -dy * 1.1;
+		ballColour = "#0095DD";
 	}
 	else {
 	alert("GAME OVER");
@@ -146,6 +147,7 @@ function collisionDetection() {
 			if(b.status == 1) {
 			if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
 				dy = -dy;
+				ballColour="green";
 				b.status = 0;
 			 }
 		 }
