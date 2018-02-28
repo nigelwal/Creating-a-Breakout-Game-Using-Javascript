@@ -77,7 +77,7 @@ if(y + dy < ballRadius) {
 } else if (y + dy > canvas.height-ballRadius) {
 	//Check if the ball is hitting the Paddle
 	if(x > paddleX && x < paddleX + paddleWidth) {
-		dy = -dy;
+		dy = -dy * 1.1;
 	}
 	else {
 	alert("GAME OVER");
@@ -86,10 +86,10 @@ if(y + dy < ballRadius) {
 }
     
     if(rightPressed && paddleX < canvas.width-paddleWidth) {
-        paddleX += 2;
+        paddleX += 4;
     }
     else if(leftPressed && paddleX > 0) {
-        paddleX -= 2;
+        paddleX -= 4;
     }
     
     x += dx;
