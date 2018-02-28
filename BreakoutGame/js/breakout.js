@@ -103,6 +103,9 @@ function draw() {
 	//Draw the paddle
     drawPaddle();
 	
+	//Detect Collision
+	collisionDetection();
+	
 	//Draw the bricks
 	drawBricks();
     
@@ -132,6 +135,17 @@ if(y + dy < ballRadius) {
     
     x += dx;
     y += dy;
+}
+
+function collisionDetection() {
+	for(c=0; c<brickColumnCount; c++) {
+		for(r=0; r<brickRowCount; r++) {
+			var b = bricks[c][r];
+			if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+				dy = -dy;
+			}
+		}
+	}
 }
 
 setInterval(draw, 10);
