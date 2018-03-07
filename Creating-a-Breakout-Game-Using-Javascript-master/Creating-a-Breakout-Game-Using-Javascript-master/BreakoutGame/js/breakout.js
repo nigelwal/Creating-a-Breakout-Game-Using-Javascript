@@ -153,7 +153,7 @@ function collisionDetection() {
 				dy = -dy;
 				ballColour="green";
 				b.status = 0;
-				score++;
+				score+= 10;
 			 }
 		 }
 	 }
