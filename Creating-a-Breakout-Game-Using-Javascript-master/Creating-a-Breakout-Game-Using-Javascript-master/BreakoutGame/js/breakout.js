@@ -12,6 +12,7 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 var score = 0;
+var lives = 3;
 
 //Game Sounds
 var WINNING_SOUND = new Audio("sounds/woohoo.wav");
@@ -121,6 +122,9 @@ function draw() {
 	//Draw the score
 	drawScore();
 	
+	//Draw the lives
+	drawLives();
+	
 	//Detect Collision
 	collisionDetection();
 	
@@ -131,20 +135,31 @@ function draw() {
 	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
 		dx = -dx;
 	}
+	
 	if(y + dy < ballRadius) {
 		dy = -dy;
 	} else if (y + dy > canvas.height-ballRadius) {
-	//Check if the ball is hitting the Paddle
-	if(x > paddleX && x < paddleX + paddleWidth) {
-		dy = -dy * 1.1;
-		ballColour = "#0095DD";
+		//Check if the ball is hitting the Paddle
+		if(x > paddleX && x < paddleX + paddleWidth) {
+			dy = -dy;
+			//ballColour = "#0095DD";
+		}
+		else {
+			lives--;
+			if(!lives) {
+				GAMEOVER_SOUND.play();
+				alert("GAME OVER");
+				document.location.reload();
+			}
+			else {
+				x = canvas.width/2;
+				y = canvas.height-30;
+				dx = 2;
+				dy = -2;
+				paddleX = (canvas.width-paddleWidth)/2;
+			}
+		}
 	}
-	else {
-	GAMEOVER_SOUND.play();
-	alert("GAME OVER");
-	document.location.reload();
-  }
-}
     
     if(rightPressed && paddleX < canvas.width-paddleWidth) {
         paddleX += 4;
@@ -183,6 +198,13 @@ function drawScore() {
 	ctx.fillStyle = "#0095DD";
 	ctx.fillText("Score: "+score, 8, 20);
 	document.getElementById("gamescore").innerHTMl = "Score: " + score;
+}
+
+function drawLives() {
+	ctx.font = "16px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("Lives: " + lives, canvas.width-65, 20);
+	document.getElementById("gamelives").innerHTML = "Lives: " + lives;
 }
 
 setInterval(draw, 10);
