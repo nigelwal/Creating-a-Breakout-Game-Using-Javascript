@@ -153,7 +153,11 @@ function collisionDetection() {
 				dy = -dy;
 				ballColour="green";
 				b.status = 0;
-				score+= 10;
+				score++;
+				if(score == brickRowCount*brickColumnCount) {
+					alert("YOU WIN, CONGRATULATIONS!");
+					document.location.reload();
+				}
 			 }
 		 }
 	 }
