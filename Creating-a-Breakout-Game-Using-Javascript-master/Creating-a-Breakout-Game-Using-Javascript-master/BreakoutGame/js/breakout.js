@@ -13,6 +13,11 @@ var dx = 2;
 var dy = -2;
 var score = 0;
 
+//Game Sounds
+var WINNING_SOUND = new Audio("sounds/woohoo.wav");
+var SCORE_SOUND = new Audio("sounds/success.wav");
+var GAMEOVER_SOUND = new Audio("sounds/gameover.wav");
+
 //Setup some bricks
 var brickRowCount = 5;
 var brickColumnCount = 5;
@@ -128,6 +133,7 @@ function draw() {
 		ballColour = "#0095DD";
 	}
 	else {
+	GAMEOVER_SOUND.play();
 	alert("GAME OVER");
 	document.location.reload();
   }
@@ -154,6 +160,7 @@ function collisionDetection() {
 				ballColour="green";
 				b.status = 0;
 				score++;
+				SCORE_SOUND.play();
 				if(score == brickRowCount*brickColumnCount) {
 					alert("YOU WIN, CONGRATULATIONS!");
 					document.location.reload();
